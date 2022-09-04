@@ -33,7 +33,7 @@ int main(void)
         average = (double)total / 3.0;
         printf("       TOTAL MARK -----------> %d\n", total);
         printf("       AVERAGE MARK ---------> %.2f\n", average);
-
+    }
 
         if(total > maxMark)             // Gets the highest mark
             maxMark = total;
