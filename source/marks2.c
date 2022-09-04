@@ -1,3 +1,5 @@
+// Without using array
+// by Lay Peng
 #include <stdio.h>
 #include <stdlib.h>
 #pragma warning(disable:4996);
