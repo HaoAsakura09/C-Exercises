@@ -46,6 +46,7 @@ int main(void)
 
     if(retry_count == 1)
         printf("Welcome to heaven! Do not disturb, Jesas. He's writing code right now!\n");
+        printf("Maybe you can help him? :)\n");
     else
         printf("Welcome to hell! Seytan will teach you English!\n");
 
