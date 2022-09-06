@@ -4,7 +4,7 @@
 
 void header_message();
 void ty_message();
-void array_clear(char books_letter[], int book_quantity[], float books_price[]);
+void array_clear(char books_letter[], int book_quantity[]);
 
 int main(void)
 {
@@ -86,10 +86,8 @@ int main(void)
 					printf("Sub total = %.2f\n", sub_pay);
 					printf("Discounts = %3.1f\n", discount);
 					printf("Total pay = %.2f\n", total_pay);
-					//Clear all previously stored values in all array and variables for next order, except discount
-					array_clear(books_letter,book_quantity, books_price);
-					total = sub_pay = total_pay = 0.0f;
-					ty_message();
+					//Clear all the previously stored values in all array ,except discount
+					array_clear(books_letter,book_quantity);
 				}
 				
 				printf("\nNext order? (Y = Yes, N = No) ");
@@ -138,12 +136,11 @@ void ty_message()
 	printf("\nTHANK YOU, HAVE A NICE DAY!!\n");
 }
 
-void array_clear(char books_letter[], int book_quantity[], float books_price[])
+void array_clear(char books_letter[], int book_quantity[])
 {
 	for(int i = 0; i < 7; i++)
 	{
 		books_letter[i] = ' ';
 		book_quantity[i] = 0;
-		books_price[i] = 0.0f;
 	}
 }
