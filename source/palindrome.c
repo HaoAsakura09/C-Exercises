@@ -7,6 +7,7 @@ bool is_palindrome(char s[], int n);
 
 int read_message(char s[], int n);
 
+void print(char s[], int n);
 int main(void)
 {
  char msg[MAX_LEN];
@@ -17,7 +18,7 @@ int main(void)
  if(is_palindrome(msg, length))
     printf("Palindrome\n");
  else
-    printf("Not a palindrome");
+    printf("\nNot a palindrome");
 
     return 0;
 }
@@ -27,7 +28,7 @@ int read_message(char s[], int n)
     int c, i = 0;
     while((c = getchar()) != '\n')
     {
-        //convert to lower
+        //convert to lowercase
         if('A' <= c && c <= 'Z')
             c = 'z' - 'Z' + c;
         if(i < n && c >= 'A' && c <= 'z')
@@ -41,10 +42,14 @@ int read_message(char s[], int n)
 
 bool is_palindrome(char s[], int n)
 {
-    int end = n - 1, start = 0;
+    int end = n - 1, i = 0;
 
-    if(s[start++] != s[end++])
-        return false;
+    while(i <= n)
+    {
+        if(s[i++] != s[end--])
+            return false;
+    }
     return true;
 }
+
 
