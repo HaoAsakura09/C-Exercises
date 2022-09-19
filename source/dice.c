@@ -57,6 +57,7 @@ bool play_game(void)
 		{
 			if(point == 7 || point == 11)
 				return true;
+			printf("Your point is %d\n", point);
 			first_roll = true;
 		}
 		
