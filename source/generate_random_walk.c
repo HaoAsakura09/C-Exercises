@@ -30,8 +30,9 @@ void generate_random_walk(char walk[ROW][COL])
 	int move, x, y;
 	x = y = 0;
 	bool top, left, right, bottom;
-
+  
 	walk[x][y] = ch;
+
 	for (;;)
 	{
 		top = left = right = bottom = false;
@@ -53,22 +54,30 @@ void generate_random_walk(char walk[ROW][COL])
 		}
 
 		if (top && x > 0 && (walk[x - 1][y] == '.'))
+		{
 			walk[--x][y] = ++ch;
+		}
 		else if (bottom && x >= 0 && x < ROW - 1 && (walk[x + 1][y] == '.'))
+		{
 			walk[++x][y] = ++ch;
+		}
 		else if (right && y >= 0 && y < COL - 1 && (walk[x][y + 1] == '.'))
+		{
 			walk[x][++y] = ++ch;
+		}
 		else if (left && y > 0 && (walk[x][y - 1] == '.'))
+		{
 			walk[x][--y] = ++ch;
-		// Sometimes infinite loop occurs
-		// So I enable these lines to check.
-		//	fflush(stdout);
-		//	sleep(1);
-		//printf("x = %d, y = %d move %d\n", x, y, move);
-		if (walk[x - 1][y] != '.' && walk[x + 1][y] != '.' && walk[x][y + 1] != '.' && walk[x][y - 1] != '.')
+		}
+    
+		if (ch == 'Z')
 			break;
-		else if (ch == 'Z')
-			break;
+			
+   		if(walk[((x + 1 > 1) ? (x - 1) : x)][y] != '.' &&
+		    walk[((x < COL - 1) ? (x + 1) : x)][y] != '.' &&
+		    walk[x][((y + 1 > 1) ? (y - 1) : y)] != '.' &&
+		    walk[x][((y < COL - 1) ? (y + 1) : y)] != '.')
+		    break;	
 	}
 }
 
@@ -81,3 +90,4 @@ void print_array(char walk[ROW][COL])
 		printf("\n");
 	}
 }
+
