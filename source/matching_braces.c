@@ -14,47 +14,44 @@ int pop(void);
 
 int main(void)
 {
-	bool is_match = true;
+	bool is_match = false;
+	int pos;
 	char ch;
 
-	int pos;
 	printf("Enter parentheses and/or braces: ");
+
 	while ((ch = getchar()) != '\n')
 	{
 		if (ch == ' ')
 			continue;
-
 		push(ch);
-		switch (ch)
-		{
-		case ')':
-		{
-			pos = pop() - 1;
-			if (contents[pos] == '(' && contents[pos + 1] == ')')
-				is_match = true;
-			else
-				is_match = false;
-		}
-		break;
-		case '}':
-		{
-			pos = pop() - 1;
-			if (contents[pos] == '{' && contents[pos + 1] == '}')
-				is_match = true;
-			else
-				is_match = false;
-		}break;
-		}
-
-		//terminate early if the pair doesn't match
-		if(is_match == false)
-			break;
+		
+	  switch(ch)
+	  {
+	  	case ')':
+	  	{
+	  		pos = pop();
+	  		if(contents[pos - 1] == '(' && contents[pos] == ')')
+	  			is_match = true;
+	  		else if(contents[pos - 1] != '(')
+	  			is_match = false;
+	  	} break;
+	  	case '}':
+	  	{
+	  		pos = pop();
+	  		if(contents[pos - 1] == '{' && contents[pos] == '}')
+	  			is_match = true;
+	  		else if(contents[pos - 1])
+	  			is_match = false;
+	  	}break;
+	}
 	}
 
 	if (is_match)
 		printf("Parenthesis/braces are nested properly.\n");
 	else
 		printf("Parenthesis/braces are not nested properly.\n");
+
 	return 0;
 }
 
