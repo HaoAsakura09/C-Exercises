@@ -40,7 +40,8 @@ int main(void)
 			break;
 		}
 		
-		is_operator_valid = check_operator(calculator.operator);		if(!is_operator_valid)
+		is_operator_valid = check_operator(calculator.operator);		
+                if(!is_operator_valid)
 		{
 			printf("Invalid operator!\n");
 			break;
