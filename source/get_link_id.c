@@ -16,7 +16,7 @@ int main(void)
 	
 	p = get_id(yt_link);
 	
-//	printf("%s", p);
+        free(p);
 	return 0;
 }
 
