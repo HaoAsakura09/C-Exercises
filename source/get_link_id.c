@@ -16,7 +16,8 @@ int main(void)
 	
 	p = get_id(yt_link);
 	
-        free(p);
+	printf("%s", p);
+   free(p);
 	return 0;
 }
 
@@ -49,9 +50,9 @@ char *get_id(char *link)
 	 while(*p != '\0')
 	 	p++;
    
-   while(*p != '=')
+   while(*p != '=' && *p != '/')
    	p--;
-	strcpy(result, p);
+	strcpy(result, ++p);
 	
 	return result;
 }
