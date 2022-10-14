@@ -14,40 +14,42 @@ int pop(void);
 
 int main(void)
 {
-	bool is_match = false;
-	int pos;
-	char ch;
-
+	bool is_match = false, brace_paren, brace_curly;
+	char ch, leftBrace;
+  
 	printf("Enter parentheses and/or braces: ");
-
+   
 	while ((ch = getchar()) != '\n')
 	{
-		if (ch == ' ')
-			continue;
-		push(ch);
-		
-	  switch(ch)
-	  {
-	  	case ')':
-	  	{
-	  		pos = pop();
-	  		if(contents[pos - 1] == '(' && contents[pos] == ')')
-	  			is_match = true;
-	  		else if(contents[pos - 1] != '(')
-	  			is_match = false;
-	  	} break;
-	  	case '}':
-	  	{
-	  		pos = pop();
-	  		if(contents[pos - 1] == '{' && contents[pos] == '}')
-	  			is_match = true;
-	  		else if(contents[pos - 1])
-	  			is_match = false;
-	  	}break;
-	}
-	}
+		// add to contents if the input is a brace
+		if( ch == '(' || ch == ')' || ch == '{' || ch == '}' )
+			push(ch);
+	    
+		brace_paren = brace_curly= false;
 
-	if (is_match)
+		switch(ch)
+		{
+			case ')': 
+				brace_paren = true;
+				--top; 
+				leftBrace = contents[pop()]; break;
+			case '}': 
+				brace_curly = true;
+				--top;
+				leftBrace = contents[pop()]; break;
+		}
+		
+	   if( brace_curly && leftBrace == '{' && ch == '}')
+	   {
+	   	is_match = true;
+	   }
+	   else if( brace_paren && leftBrace == '(' && ch == ')')
+	   {
+	   	is_match = true;
+	   }
+	}
+	
+	if (is_match && top == 0)
 		printf("Parenthesis/braces are nested properly.\n");
 	else
 		printf("Parenthesis/braces are not nested properly.\n");
